@@ -1,0 +1,75 @@
+/* Estilos Generales */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  background: linear-gradient(to right, #f0f4f8, #d9e6ff);
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Barra de Navegación */
+.nav-bar {
+  background-color: #2c3e50;
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.nav-bar h1 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+#election_status {
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #e74c3c;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+/* Estilos de Encabezado y Secciones */
+header {
+  flex-shrink: 0;
+}
+
+main {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.view {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.view.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+h1, h2 {
+  color: #2c3e50;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}

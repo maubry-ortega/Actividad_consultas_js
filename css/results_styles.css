@@ -1,0 +1,58 @@
+/* Contenedor de Resultados */
+#results_container {
+  background-color: #ffffff;
+  padding: 20px;
+  max-width: 600px;
+  margin: 20px auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+#results_chart {
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+/* Estilos de Carga */
+.loading-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 10px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Diseño Responsivo */
+@media (max-width: 768px) {
+  .nav-bar {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nav-bar h1 {
+    font-size: 1.5rem;
+  }
+
+  form, #results_container, #results_chart {
+    max-width: 90%;
+  }
+
+  .candidate-card {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+}

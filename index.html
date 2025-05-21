@@ -1,27 +1,54 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Elecciones Aprendices</title>
-  <link rel="stylesheet" href="styles.css"/>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
-  <script type="module" src="js/main.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elección de Representante - SENA</title>
+  <link rel="stylesheet" href="css/general_styles.css">
+  <link rel="stylesheet" href="css/form_styles.css">
+  <link rel="stylesheet" href="css/card_styles.css">
+  <link rel="stylesheet" href="css/results_styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 </head>
 <body>
-  <section id="loginView">
-    <h1>Inicio de Sesión - Administrador</h1>
-    <form id="loginForm">
-      <input type="text" id="usernameInput" placeholder="Usuario" required/>
-      <input type="password" id="passwordInput" placeholder="Contraseña" required/>
-      <button type="submit">Ingresar</button>
-    </form>
-  </section>
-
-  <section id="votingView" style="display: none;">
-    <h1>Elección de Representante</h1>
-    <section id="candidatesContainer"></section>
-    <button id="closeElectionBtn">Cerrar elecciones</button>
-  </section>
+  <header>
+    <nav class="nav-bar">
+      <h1>Elección de Representante de Aprendices</h1>
+      <div id="election_status" aria-live="polite">Estado: No iniciado</div>
+    </nav>
+  </header>
+  <main>
+    <section id="login_view" class="view active">
+      <h2>Inicio de Sesión - Administrador</h2>
+      <form id="admin_login_form" aria-label="Formulario de inicio de sesión del administrador">
+        <div class="input-group">
+          <label for="username_input">Usuario</label>
+          <input type="text" id="username_input" placeholder="Usuario" required aria-label="Nombre de usuario">
+        </div>
+        <div class="input-group">
+          <label for="password_input">Contraseña</label>
+          <input type="password" id="password_input" placeholder="Contraseña" required aria-label="Contraseña">
+        </div>
+        <button type="submit">Ingresar</button>
+      </form>
+    </section>
+    <section id="candidate_voting_view" class="view" style="display: none;">
+      <h2>Selecciona tu Candidato</h2>
+      <div id="loading_container" class="loading-container" style="display: none;">
+        <div class="spinner"></div>
+        <p>Cargando candidatos...</p>
+      </div>
+      <div id="candidates_container" role="list" class="candidates-container"></div>
+      <button id="close_election_btn" aria-label="Cerrar elecciones" class="action-btn">Cerrar elecciones</button>
+    </section>
+    <section id="results_view" class="view" style="display: none;">
+      <h2>Resultados de la Elección</h2>
+      <canvas id="results_chart" aria-label="Gráfico de resultados de la elección"></canvas>
+      <div id="results_container" role="region" aria-live="polite"></div>
+      <button id="back_to_login_btn" aria-label="Volver al inicio" class="action-btn">Volver al inicio</button>
+    </section>
+  </main>
+  <script type="module" src="js/main.js"></script>
 </body>
 </html>
