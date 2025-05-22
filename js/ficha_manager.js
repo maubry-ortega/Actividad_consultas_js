@@ -1,24 +1,25 @@
 /**
- * Gestión dinámica de fichas y nombres de aprendices.
+ * @file ficha_manager.js
+ * @description Clase para gestionar dinámicamente fichas y nombres de aprendices con persistencia en localStorage.
  */
 
-/**
- * Clase para manejar la estructura dinámica de fichas.
- */
 export class FichaManager {
   #fichas;
 
   /**
-   * Inicializa el gestor de fichas, cargando desde localStorage si existe.
+   * Inicializa la instancia cargando las fichas existentes desde localStorage,
+   * o creando una estructura vacía si no hay datos previos.
    */
   constructor() {
     this.#fichas = new Map(JSON.parse(localStorage.getItem('fichas')) || []);
   }
 
   /**
-   * Obtiene o crea una ficha con su arreglo de nombres.
-   * @param {string} fichaId - Identificador de la ficha.
-   * @returns {Array<{nombre: string}>} Arreglo de nombres de la ficha.
+   * Obtiene el arreglo de nombres asociado a una ficha. Si la ficha no existe,
+   * la crea automáticamente con un arreglo vacío y la persiste.
+   * 
+   * @param {string} fichaId - Identificador único de la ficha.
+   * @returns {Array<{nombre: string}>} Lista de nombres registrados en la ficha.
    */
   getOrCreateFicha(fichaId) {
     if (!this.#fichas.has(fichaId)) {
@@ -29,10 +30,12 @@ export class FichaManager {
   }
 
   /**
-   * Agrega un nombre a una ficha si no existe.
+   * Agrega un nuevo nombre a la ficha indicada, solo si aún no existe en la lista.
+   * Guarda los cambios automáticamente.
+   * 
    * @param {string} fichaId - Identificador de la ficha.
-   * @param {string} nombre - Nombre a agregar.
-   * @returns {boolean} Verdadero si se agregó, falso si ya existía.
+   * @param {string} nombre - Nombre del aprendiz a agregar.
+   * @returns {boolean} `true` si el nombre fue agregado; `false` si ya existía.
    */
   addNombre(fichaId, nombre) {
     const nombres = this.getOrCreateFicha(fichaId);
@@ -45,10 +48,11 @@ export class FichaManager {
   }
 
   /**
-   * Verifica si un nombre existe en una ficha.
+   * Verifica si un nombre ya está registrado en la ficha indicada.
+   * 
    * @param {string} fichaId - Identificador de la ficha.
    * @param {string} nombre - Nombre a verificar.
-   * @returns {boolean} Verdadero si el nombre existe en la ficha.
+   * @returns {boolean} `true` si el nombre existe; `false` en caso contrario.
    */
   nombreExists(fichaId, nombre) {
     const nombres = this.#fichas.get(fichaId) || [];
@@ -56,7 +60,8 @@ export class FichaManager {
   }
 
   /**
-   * Guarda las fichas en localStorage.
+   * Guarda el estado actual de fichas en localStorage.
+   * 
    * @private
    */
   #save() {
